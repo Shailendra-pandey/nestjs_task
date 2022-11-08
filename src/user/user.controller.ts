@@ -1,4 +1,5 @@
 import { Controller, Post, Body } from "@nestjs/common";
+import { LoginValidator } from "src/validator/login.validator";
 import { RegisterValidator } from "src/validator/register.validator";
 import { UserService } from "./user.service";
 
@@ -12,5 +13,10 @@ export class UserController {
         @Body() registerValidator: RegisterValidator,
     ) {
         return this.userService.registeruser(registerValidator);
+    }
+
+    @Post('login')
+    loginUser(@Body() loginValidator: LoginValidator) {
+        return this.userService.loginuser(loginValidator)
     }
 }
